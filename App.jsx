@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'; import { ShoppingCart, X, Plus, Minus } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ShoppingCart, X, Plus, Minus, ShoppingBag } from 'lucide-react';
 
 const PRODUCTS = [
   { id: 1, name: 'تيشيرت قطن فاخر', price: 250 },
@@ -68,11 +69,10 @@ export default function EcommerceApp() {
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
             <div className="flex items-center gap-3">
-              <ShoppingBag className="h-8 w-8 text-indigo-600" />
               <img 
-                src="file_00000000bbe0000c0001.webp" 
+                src="ضع_اسم_الملف_الصحيح_هنا" 
                 alt="Logo" 
-                className="h-14 w-auto object-contain"
+                className="h-12 w-auto object-contain"
               />
             </div>
 
@@ -369,4 +369,3 @@ export default function EcommerceApp() {
     </div>
   );
 }
-
