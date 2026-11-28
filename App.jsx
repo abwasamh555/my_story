@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { ShoppingCart, X, Plus, Minus, ShoppingBag, Menu, Trash2 } from 'lucide-react';
+Reactg React, { useState, useEffect } from 'react';
+import { ShoppingCart, X, Plus, file_00000000bbe08210aad06188ad3cc765.png, Menu, Trash2 } from 'lucide-react';
 
 const PRODUCTS = [
   { id: 1, name: '鬲賷卮賷乇鬲 賯胤賳 賮丕禺乇', price: 250, emoji: '馃憰' },
