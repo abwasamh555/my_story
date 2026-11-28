@@ -6,126 +6,973 @@
 <title>MY STORY | متجر التسوق بالعمولة</title>
 <meta name="description" content="MY STORY - اكتشف المنتجات المميزة وتسوق من أمازون عبر روابط العمولة.">
 <meta name="theme-color" content="#111111">
+
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
 <style>
-*{box-sizing:border-box}body{font-family:Cairo,system-ui,sans-serif;background:#f8fafc}.gold{color:#c49a45}.gold-bg{background:#c49a45}.gold-hover:hover{background:#b28735}
-.card{transition:transform .2s,box-shadow .2s}.card:hover{transform:translateY(-4px);box-shadow:0 14px 32px #00000012}
-.modal{display:none}.modal.open{display:flex}.badge{font-size:11px}
+*{box-sizing:border-box}
+body{font-family:Cairo,system-ui,sans-serif;background:#f8fafc}
+.gold{color:#c49a45}
+.gold-bg{background:#c49a45}
+.gold-hover:hover{background:#b28735}
+.card{transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 14px 32px #00000012}
+.modal{display:none}
+.modal.open{display:flex}
+.badge{font-size:11px}
 input,textarea,select{font-family:inherit}
+.product-image{cursor:pointer}
+.drawer{width:100%;max-width:480px;height:100%;max-height:100vh}
+button:disabled{opacity:.5;cursor:not-allowed}
 </style>
 </head>
+
 <body class="text-gray-800">
+
+<!-- HEADER -->
 <header class="sticky top-0 z-40 bg-white shadow-sm">
- <div class="max-w-7xl mx-auto px-4 h-18 min-h-[72px] flex items-center justify-between gap-3">
-  <button id="menuBtn" class="md:hidden p-2 rounded-lg hover:bg-gray-100" aria-label="القائمة"><i class="fa-solid fa-bars text-xl"></i></button>
-  <a href="#" class="flex items-center gap-2">
-   <img src="https://raw.githubusercontent.com/abwasamh555/my_story/main/file_00000000bbe08210aad06188ad3cc765.png" alt="MY STORY" class="h-12 max-w-[150px] object-contain">
+ <div class="max-w-7xl mx-auto px-4 min-h-[72px] flex items-center justify-between gap-3">
+
+  <button id="menuBtn" class="md:hidden p-2 rounded-lg hover:bg-gray-100" aria-label="القائمة">
+   <i class="fa-solid fa-bars text-xl"></i>
+  </button>
+
+  <a href="#home" class="flex items-center gap-2">
+   <img src="https://raw.githubusercontent.com/abwasamh555/my_story/main/file_00000000bbe08210aad06188ad3cc765.png"
+   alt="MY STORY" class="h-12 max-w-[150px] object-contain">
   </a>
+
   <nav class="hidden md:flex items-center gap-6 text-sm font-semibold">
-   <a href="#home" class="hover:text-amber-600">الرئيسية</a><a href="#featured" class="hover:text-amber-600">منتجات مميزة</a><a href="#best" class="hover:text-amber-600">الأكثر رواجًا</a><a href="#products" class="hover:text-amber-600">كل المنتجات</a>
+   <a href="#home" class="hover:text-amber-600">الرئيسية</a>
+   <a href="#featured" class="hover:text-amber-600">منتجات مميزة</a>
+   <a href="#best" class="hover:text-amber-600">الأكثر رواجًا</a>
+   <a href="#products" class="hover:text-amber-600">كل المنتجات</a>
   </nav>
+
   <div class="flex gap-2 items-center">
-   <button id="adminOpen" class="text-xs sm:text-sm border rounded-lg px-3 py-2 hover:border-amber-500"><i class="fa-solid fa-user-gear ml-1"></i>الإدارة</button>
+
+   <!-- CART BUTTON -->
+   <button id="cartOpen" class="relative border rounded-xl px-3 py-2 hover:border-amber-500">
+    <i class="fa-solid fa-cart-shopping text-lg"></i>
+    <span class="mr-1 text-sm font-bold hidden sm:inline">السلة</span>
+    <span id="cartCount" class="absolute -top-2 -left-2 bg-red-600 text-white text-xs rounded-full min-w-[21px] h-[21px] flex items-center justify-center px-1">0</span>
+   </button>
+
+   <button id="adminOpen" class="text-xs sm:text-sm border rounded-lg px-3 py-2 hover:border-amber-500">
+    <i class="fa-solid fa-user-gear ml-1"></i>الإدارة
+   </button>
+
   </div>
  </div>
- <nav id="mobileNav" class="hidden md:hidden border-t px-4 py-3 bg-white space-y-2"><a class="block py-2" href="#home">الرئيسية</a><a class="block py-2" href="#featured">منتجات مميزة</a><a class="block py-2" href="#best">الأكثر رواجًا</a><a class="block py-2" href="#products">كل المنتجات</a></nav>
+
+ <nav id="mobileNav" class="hidden md:hidden border-t px-4 py-3 bg-white space-y-2">
+  <a class="block py-2" href="#home">الرئيسية</a>
+  <a class="block py-2" href="#featured">منتجات مميزة</a>
+  <a class="block py-2" href="#best">الأكثر رواجًا</a>
+  <a class="block py-2" href="#products">كل المنتجات</a>
+ </nav>
 </header>
+
+<!-- HERO -->
 <section id="home" class="relative bg-gray-950 text-white overflow-hidden">
- <div class="absolute inset-0"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1600&q=80" class="w-full h-full object-cover opacity-20" alt=""></div>
+ <div class="absolute inset-0">
+  <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1600&q=80"
+  class="w-full h-full object-cover opacity-20" alt="">
+ </div>
+
  <div class="relative max-w-7xl mx-auto px-4 py-20 md:py-28 text-center">
   <p class="text-amber-400 font-bold tracking-widest mb-3">MY STORY ONLINE STORE</p>
-  <h1 class="text-3xl md:text-5xl font-black mb-5">اختار منتجك.. وتسوق بثقة</h1>
-  <p class="text-gray-200 max-w-2xl mx-auto mb-8">اكتشف ترشيحات ومنتجات متنوعة. عند الضغط على الشراء، تنتقل إلى موقع البائع لإتمام عملية الشراء.</p>
-  <a href="#products" class="inline-flex items-center gap-2 gold-bg text-black px-7 py-3 rounded-full font-bold hover:scale-105 transition">اكتشف المنتجات <i class="fa-solid fa-arrow-left"></i></a>
+
+  <h1 class="text-3xl md:text-5xl font-black mb-5">
+   اختار منتجك.. وتسوق بثقة
+  </h1>
+
+  <p class="text-gray-200 max-w-2xl mx-auto mb-8">
+   اكتشف ترشيحات ومنتجات متنوعة. عند الضغط على الشراء، تنتقل إلى موقع البائع لإتمام عملية الشراء.
+  </p>
+
+  <a href="#products" class="inline-flex items-center gap-2 gold-bg text-black px-7 py-3 rounded-full font-bold hover:scale-105 transition">
+   اكتشف المنتجات <i class="fa-solid fa-arrow-left"></i>
+  </a>
  </div>
 </section>
+
+<!-- SEARCH -->
 <section class="max-w-7xl mx-auto px-4 pt-8">
  <div class="flex flex-col md:flex-row gap-3">
-  <div class="relative flex-1"><i class="fa-solid fa-search absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"></i><input id="search" type="search" placeholder="ابحث عن منتج..." class="w-full bg-white border rounded-xl py-3 pr-11 pl-4 outline-none focus:border-amber-500"></div>
-  <select id="categoryFilter" class="bg-white border rounded-xl py-3 px-4 md:w-56"><option value="">كل التصنيفات</option></select>
+
+  <div class="relative flex-1">
+   <i class="fa-solid fa-search absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+   <input id="search" type="search" placeholder="ابحث عن منتج..."
+   class="w-full bg-white border rounded-xl py-3 pr-11 pl-4 outline-none focus:border-amber-500">
+  </div>
+
+  <select id="categoryFilter" class="bg-white border rounded-xl py-3 px-4 md:w-56">
+   <option value="">كل التصنيفات</option>
+  </select>
+
  </div>
 </section>
-<main class="max-w-7xl mx-auto px-4 py-10 space-y-12">
- <section id="featuredSection"><div class="mb-5"><h2 class="text-2xl font-extrabold">منتجات مميزة</h2><p class="text-gray-500 text-sm mt-1">اختيارات المتجر</p></div><div id="featuredGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"></div></section>
- <section id="bestSection"><div class="mb-5"><h2 class="text-2xl font-extrabold">الأكثر رواجًا</h2><p class="text-gray-500 text-sm mt-1">منتجات يرشحها المتجر</p></div><div id="bestGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"></div></section>
- <section id="products"><div class="mb-5 flex items-end justify-between gap-2"><div><h2 class="text-2xl font-extrabold">كل المنتجات</h2><p class="text-gray-500 text-sm mt-1">تصفح القائمة واختار اللي يناسبك</p></div><span id="countLabel" class="text-sm text-gray-500"></span></div><div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"></div></section>
-</main>
-<footer class="bg-gray-950 text-gray-300 mt-12 py-10 text-center"><img src="https://raw.githubusercontent.com/abwasamh555/my_story/main/file_00000000bbe08210aad06188ad3cc765.png" alt="MY STORY" class="h-12 mx-auto mb-4"><p class="text-xs text-gray-500 mb-3">قد يحتوي الموقع على روابط تسويق بالعمولة. قد نحصل على عمولة عند الشراء عبرها دون تكلفة إضافية عليك.</p><p class="text-sm">© <span id="year"></span> MY STORY</p><div class="mt-4 text-sm flex justify-center gap-5"><a href="#" class="hover:text-amber-400">سياسة الخصوصية</a><a href="#" class="hover:text-amber-400">اتصل بنا</a></div></footer>
 
-<!-- Admin login -->
-<div id="loginModal" class="modal fixed inset-0 z-50 bg-black/60 items-center justify-center p-4">
- <div class="bg-white rounded-2xl w-full max-w-sm p-6">
-  <div class="flex justify-between mb-4"><h3 class="font-bold text-xl">دخول لوحة الإدارة</h3><button class="closeLogin text-gray-500"><i class="fa fa-times"></i></button></div>
-  <p class="text-sm text-gray-500 mb-3">الرمز الافتراضي في هذه النسخة التجريبية: <b>1234</b></p>
-  <input id="adminPin" type="password" inputmode="numeric" placeholder="رمز الدخول" class="w-full border rounded-xl p-3 mb-3">
-  <button id="loginBtn" class="w-full bg-gray-900 text-white rounded-xl py-3 font-bold">دخول</button><p id="loginError" class="text-red-600 text-sm mt-2"></p>
+<!-- PRODUCTS -->
+<main class="max-w-7xl mx-auto px-4 py-10 space-y-12">
+
+ <section id="featuredSection">
+  <div class="mb-5">
+   <h2 class="text-2xl font-extrabold">منتجات مميزة</h2>
+   <p class="text-gray-500 text-sm mt-1">اختيارات المتجر</p>
+  </div>
+  <div id="featuredGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"></div>
+ </section>
+
+ <section id="bestSection">
+  <div class="mb-5">
+   <h2 class="text-2xl font-extrabold">الأكثر رواجًا</h2>
+   <p class="text-gray-500 text-sm mt-1">منتجات يرشحها المتجر</p>
+  </div>
+  <div id="bestGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"></div>
+ </section>
+
+ <section id="products">
+  <div class="mb-5 flex items-end justify-between gap-2">
+   <div>
+    <h2 class="text-2xl font-extrabold">كل المنتجات</h2>
+    <p class="text-gray-500 text-sm mt-1">تصفح القائمة واختار اللي يناسبك</p>
+   </div>
+   <span id="countLabel" class="text-sm text-gray-500"></span>
+  </div>
+
+  <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"></div>
+ </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-gray-950 text-gray-300 mt-12 py-10 text-center">
+
+ <img src="https://raw.githubusercontent.com/abwasamh555/my_story/main/file_00000000bbe08210aad06188ad3cc765.png"
+ alt="MY STORY" class="h-12 mx-auto mb-4">
+
+ <p class="text-xs text-gray-500 mb-3">
+ قد يحتوي الموقع على روابط تسويق بالعمولة. قد نحصل على عمولة عند الشراء عبرها دون تكلفة إضافية عليك.
+ </p>
+
+ <p class="text-sm">© <span id="year"></span> MY STORY</p>
+
+ <div class="mt-4 text-sm flex justify-center gap-5">
+  <a href="#" class="hover:text-amber-400">سياسة الخصوصية</a>
+  <a href="#" class="hover:text-amber-400">اتصل بنا</a>
+ </div>
+
+</footer>
+
+<!-- CART MODAL -->
+<div id="cartModal" class="modal fixed inset-0 z-50 bg-black/60 justify-end">
+
+ <div class="drawer bg-white shadow-2xl flex flex-col">
+
+  <div class="p-4 border-b flex justify-between items-center">
+   <div>
+    <h2 class="text-xl font-black">
+     <i class="fa-solid fa-cart-shopping ml-2 gold"></i>
+     سلة مشترياتك
+    </h2>
+    <p class="text-xs text-gray-500 mt-1">المنتجات التي اخترتها</p>
+   </div>
+
+   <button id="cartClose" class="text-2xl p-2" aria-label="إغلاق السلة">
+    <i class="fa-solid fa-times"></i>
+   </button>
+  </div>
+
+  <div id="cartItems" class="flex-1 overflow-y-auto p-4 space-y-4"></div>
+
+  <div id="cartFooter" class="border-t p-4">
+   <div class="flex justify-between font-bold mb-3">
+    <span>إجمالي المنتجات</span>
+    <span id="cartTotal">0</span>
+   </div>
+
+   <p class="text-xs text-gray-500 mb-3">
+    الشراء يتم من موقع البائع عبر رابط العمولة الخاص بكل منتج.
+   </p>
+
+   <button id="clearCart" class="w-full border border-red-200 text-red-600 rounded-xl py-2">
+    إفراغ السلة
+   </button>
+  </div>
+
  </div>
 </div>
-<!-- Admin -->
-<div id="adminModal" class="modal fixed inset-0 z-50 bg-black/60 items-center justify-center p-2 sm:p-4">
- <div class="bg-white rounded-2xl w-full max-w-5xl max-h-[95vh] overflow-auto">
-  <div class="sticky top-0 bg-white border-b p-4 flex justify-between items-center z-10"><div><h2 class="text-xl font-black">لوحة إدارة MY STORY</h2><p class="text-xs text-gray-500">إدارة المنتجات والإعدادات</p></div><button id="adminClose" class="p-2 text-xl"><i class="fa fa-times"></i></button></div>
-  <div class="p-4 sm:p-6 grid lg:grid-cols-[1fr_1.2fr] gap-6">
-   <div>
-    <h3 class="font-bold mb-3">إضافة / تعديل منتج</h3>
-    <form id="productForm" class="space-y-3">
-     <input type="hidden" id="editId">
-     <label class="block text-sm font-semibold">رابط المنتج على أمازون (اختياري)<input id="amazonUrl" type="url" placeholder="https://www.amazon..." class="mt-1 w-full border rounded-lg p-2 text-left" dir="ltr"></label>
-     <label class="block text-sm font-semibold">اسم المنتج *<input id="pName" required class="mt-1 w-full border rounded-lg p-2" placeholder="اسم المنتج"></label>
-     <label class="block text-sm font-semibold">رابط الصورة<input id="pImage" type="url" class="mt-1 w-full border rounded-lg p-2 text-left" dir="ltr" placeholder="https://..."></label>
-     <label class="block text-sm font-semibold">الوصف<textarea id="pDesc" rows="2" class="mt-1 w-full border rounded-lg p-2" placeholder="وصف مختصر"></textarea></label>
-     <div class="grid grid-cols-2 gap-3"><label class="block text-sm font-semibold">السعر (اختياري)<input id="pPrice" type="number" min="0" step="0.01" class="mt-1 w-full border rounded-lg p-2" placeholder="0"></label><label class="block text-sm font-semibold">التصنيف<input id="pCategory" class="mt-1 w-full border rounded-lg p-2" placeholder="مثال: إلكترونيات"></label></div>
-     <div class="grid grid-cols-2 gap-2 text-sm"><label class="flex gap-2 items-center"><input id="pFeatured" type="checkbox"> منتج مميز</label><label class="flex gap-2 items-center"><input id="pBest" type="checkbox"> الأكثر رواجًا</label></div>
-     <label class="block text-sm font-semibold">رابط العمولة (المستخدم عند الشراء) *<input id="pAffiliate" type="url" required class="mt-1 w-full border rounded-lg p-2 text-left" dir="ltr" placeholder="رابط أمازون مع معرّف العمولة"></label>
-     <div class="flex gap-2"><button class="flex-1 bg-amber-500 text-black rounded-lg py-3 font-bold" type="submit"><i class="fa fa-plus ml-1"></i>حفظ المنتج</button><button id="resetForm" type="button" class="px-4 border rounded-lg">مسح</button></div>
-    </form>
-    <div class="mt-4 p-3 bg-amber-50 border border-amber-100 rounded-xl text-xs leading-6 text-amber-900"><b>تنبيه الاستيراد:</b> لصق الرابط وحده لا يضمن سحب بيانات أمازون تلقائيًا. في هذه النسخة يمكنك إدخال البيانات يدويًا؛ الاستيراد التلقائي يحتاج تكامل API رسمي ومفاتيح محفوظة بالخادم، وليس داخل HTML.</div>
+
+<!-- PRODUCT DETAILS MODAL -->
+<div id="detailsModal" class="modal fixed inset-0 z-50 bg-black/70 items-center justify-center p-4">
+
+ <div class="bg-white rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-auto relative">
+
+  <button id="detailsClose" class="absolute left-3 top-3 z-10 bg-white shadow rounded-full w-10 h-10">
+   <i class="fa-solid fa-times"></i>
+  </button>
+
+  <div class="grid md:grid-cols-2">
+
+   <div class="bg-gray-100 min-h-[260px]">
+    <img id="detailsImage" src="" alt="" class="w-full h-full min-h-[260px] object-cover">
    </div>
-   <div>
-    <div class="flex flex-wrap justify-between items-center gap-2 mb-3"><h3 class="font-bold">المنتجات الحالية (<span id="adminCount">0</span>)</h3><div class="flex gap-2"><button id="exportBtn" class="border rounded-lg px-3 py-2 text-sm">تصدير نسخة</button><label class="border rounded-lg px-3 py-2 text-sm cursor-pointer">استيراد نسخة<input id="importFile" type="file" accept=".json,application/json" class="hidden"></label></div></div>
-    <div id="adminProducts" class="space-y-2"></div>
-    <button id="logoutBtn" class="mt-4 w-full border border-red-200 text-red-600 rounded-lg py-2">تسجيل الخروج</button>
+
+   <div class="p-6 flex flex-col">
+    <p id="detailsCategory" class="text-amber-700 text-sm font-bold mb-2"></p>
+
+    <h2 id="detailsName" class="text-2xl font-black mb-3"></h2>
+
+    <p id="detailsDescription" class="text-gray-600 leading-8 mb-4"></p>
+
+    <p id="detailsPrice" class="font-black text-xl mb-5"></p>
+
+    <div class="mt-auto space-y-3">
+     <button id="detailsAdd" class="w-full gold-bg text-black rounded-xl py-3 font-bold">
+      <i class="fa-solid fa-cart-plus ml-2"></i>أضف للسلة
+     </button>
+
+     <a id="detailsBuy" href="#" target="_blank" rel="nofollow sponsored noopener"
+     class="block text-center bg-gray-900 text-white rounded-xl py-3 font-bold">
+      شاهد المنتج على أمازون
+      <i class="fa-solid fa-arrow-left mr-2"></i>
+     </a>
+    </div>
+
    </div>
   </div>
  </div>
 </div>
+
+<!-- ADMIN LOGIN -->
+<div id="loginModal" class="modal fixed inset-0 z-50 bg-black/60 items-center justify-center p-4">
+
+ <div class="bg-white rounded-2xl w-full max-w-sm p-6">
+
+  <div class="flex justify-between mb-4">
+   <h3 class="font-bold text-xl">دخول لوحة الإدارة</h3>
+   <button class="closeLogin text-gray-500">
+    <i class="fa fa-times"></i>
+   </button>
+  </div>
+
+  <p class="text-sm text-gray-500 mb-3">
+   رمز الدخول التجريبي: <b>1234</b>
+  </p>
+
+  <input id="adminPin" type="password" inputmode="numeric"
+  placeholder="رمز الدخول" class="w-full border rounded-xl p-3 mb-3">
+
+  <button id="loginBtn" class="w-full bg-gray-900 text-white rounded-xl py-3 font-bold">
+   دخول
+  </button>
+
+  <p id="loginError" class="text-red-600 text-sm mt-2"></p>
+ </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="adminModal" class="modal fixed inset-0 z-50 bg-black/60 items-center justify-center p-2 sm:p-4">
+
+ <div class="bg-white rounded-2xl w-full max-w-5xl max-h-[95vh] overflow-auto">
+
+  <div class="sticky top-0 bg-white border-b p-4 flex justify-between items-center z-10">
+   <div>
+    <h2 class="text-xl font-black">لوحة إدارة MY STORY</h2>
+    <p class="text-xs text-gray-500">إدارة المنتجات والإعدادات</p>
+   </div>
+
+   <button id="adminClose" class="p-2 text-xl">
+    <i class="fa fa-times"></i>
+   </button>
+  </div>
+
+  <div class="p-4 sm:p-6 grid lg:grid-cols-[1fr_1.2fr] gap-6">
+
+   <div>
+    <h3 class="font-bold mb-3">إضافة / تعديل منتج</h3>
+
+    <form id="productForm" class="space-y-3">
+
+     <input type="hidden" id="editId">
+
+     <label class="block text-sm font-semibold">
+      رابط المنتج على أمازون
+      <input id="amazonUrl" type="url" placeholder="https://www.amazon..."
+      class="mt-1 w-full border rounded-lg p-2 text-left" dir="ltr">
+     </label>
+
+     <label class="block text-sm font-semibold">
+      اسم المنتج *
+      <input id="pName" required class="mt-1 w-full border rounded-lg p-2" placeholder="اسم المنتج">
+     </label>
+
+     <label class="block text-sm font-semibold">
+      رابط الصورة
+      <input id="pImage" type="url" class="mt-1 w-full border rounded-lg p-2 text-left"
+      dir="ltr" placeholder="https://...">
+     </label>
+
+     <label class="block text-sm font-semibold">
+      الوصف
+      <textarea id="pDesc" rows="2" class="mt-1 w-full border rounded-lg p-2"
+      placeholder="وصف مختصر"></textarea>
+     </label>
+
+     <div class="grid grid-cols-2 gap-3">
+
+      <label class="block text-sm font-semibold">
+       السعر
+       <input id="pPrice" type="number" min="0" step="0.01"
+       class="mt-1 w-full border rounded-lg p-2" placeholder="0">
+      </label>
+
+      <label class="block text-sm font-semibold">
+       التصنيف
+       <input id="pCategory" class="mt-1 w-full border rounded-lg p-2"
+       placeholder="مثال: إلكترونيات">
+      </label>
+
+     </div>
+
+     <div class="grid grid-cols-2 gap-2 text-sm">
+      <label class="flex gap-2 items-center">
+       <input id="pFeatured" type="checkbox"> منتج مميز
+      </label>
+
+      <label class="flex gap-2 items-center">
+       <input id="pBest" type="checkbox"> الأكثر رواجًا
+      </label>
+     </div>
+
+     <label class="block text-sm font-semibold">
+      رابط العمولة (المستخدم عند الشراء) *
+      <input id="pAffiliate" type="url" required
+      class="mt-1 w-full border rounded-lg p-2 text-left"
+      dir="ltr" placeholder="رابط أمازون مع معرّف العمولة">
+     </label>
+
+     <div class="flex gap-2">
+      <button class="flex-1 bg-amber-500 text-black rounded-lg py-3 font-bold" type="submit">
+       <i class="fa fa-plus ml-1"></i>حفظ المنتج
+      </button>
+
+      <button id="resetForm" type="button" class="px-4 border rounded-lg">
+       مسح
+      </button>
+     </div>
+
+    </form>
+
+    <div class="mt-4 p-3 bg-amber-50 border border-amber-100 rounded-xl text-xs leading-6 text-amber-900">
+     <b>تنبيه:</b>
+     إدخال رابط أمازون لا يسحب بيانات المنتج تلقائيًا. الاستيراد التلقائي يحتاج API رسميًا.
+    </div>
+   </div>
+
+   <div>
+
+    <div class="flex flex-wrap justify-between items-center gap-2 mb-3">
+     <h3 class="font-bold">
+      المنتجات الحالية (<span id="adminCount">0</span>)
+     </h3>
+
+     <div class="flex gap-2">
+      <button id="exportBtn" class="border rounded-lg px-3 py-2 text-sm">
+       تصدير نسخة
+      </button>
+
+      <label class="border rounded-lg px-3 py-2 text-sm cursor-pointer">
+       استيراد نسخة
+       <input id="importFile" type="file" accept=".json,application/json" class="hidden">
+      </label>
+     </div>
+    </div>
+
+    <div id="adminProducts" class="space-y-2"></div>
+
+    <button id="logoutBtn" class="mt-4 w-full border border-red-200 text-red-600 rounded-lg py-2">
+     تسجيل الخروج
+    </button>
+
+   </div>
+  </div>
+ </div>
+</div>
+
+<!-- TOAST -->
 <div id="toast" class="fixed bottom-4 right-4 z-[60] bg-gray-900 text-white px-4 py-3 rounded-xl shadow-lg hidden"></div>
+
 <script>
 const STORAGE_KEY='mystory_affiliate_products_v1';
+const CART_KEY='mystory_cart_v1';
+
 const DEFAULT_PRODUCTS=[
-{id:'demo-1',name:'تيشيرت قطن فاخر',description:'مثال توضيحي - استبدل بياناته بمنتجك الحقيقي.',category:'ملابس',image:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=600&fit=crop',price:'',affiliateUrl:'',amazonUrl:'',featured:true,best:true,createdAt:Date.now()},
-{id:'demo-2',name:'حذاء رياضي',description:'مثال توضيحي - أضف رابط المنتج والعمولة.',category:'أحذية',image:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop',price:'',affiliateUrl:'',amazonUrl:'',featured:false,best:true,createdAt:Date.now()-1},
-{id:'demo-3',name:'ساعة أنيقة',description:'مثال توضيحي.',category:'إكسسوارات',image:'https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=600&h=600&fit=crop',price:'',affiliateUrl:'',amazonUrl:'',featured:true,best:false,createdAt:Date.now()-2},
-{id:'demo-4',name:'حقيبة يومية',description:'مثال توضيحي.',category:'حقائب',image:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop',price:'',affiliateUrl:'',amazonUrl:'',featured:false,best:false,createdAt:Date.now()-3}
+{
+id:'demo-1',
+name:'تيشيرت قطن فاخر',
+description:'مثال توضيحي - استبدل بياناته بمنتجك الحقيقي.',
+category:'ملابس',
+image:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=600&fit=crop',
+price:'',
+affiliateUrl:'',
+amazonUrl:'',
+featured:true,
+best:true,
+createdAt:Date.now()
+},
+{
+id:'demo-2',
+name:'حذاء رياضي',
+description:'مثال توضيحي - أضف رابط المنتج والعمولة.',
+category:'أحذية',
+image:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop',
+price:'',
+affiliateUrl:'',
+amazonUrl:'',
+featured:false,
+best:true,
+createdAt:Date.now()-1
+},
+{
+id:'demo-3',
+name:'ساعة أنيقة',
+description:'مثال توضيحي.',
+category:'إكسسوارات',
+image:'https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=600&h=600&fit=crop',
+price:'',
+affiliateUrl:'',
+amazonUrl:'',
+featured:true,
+best:false,
+createdAt:Date.now()-2
+},
+{
+id:'demo-4',
+name:'حقيبة يومية',
+description:'مثال توضيحي.',
+category:'حقائب',
+image:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop',
+price:'',
+affiliateUrl:'',
+amazonUrl:'',
+featured:false,
+best:false,
+createdAt:Date.now()-3
+}
 ];
+
+function loadProducts(){
+ try{
+  const d=JSON.parse(localStorage.getItem(STORAGE_KEY));
+  return Array.isArray(d)?d:DEFAULT_PRODUCTS;
+ }catch{
+  return DEFAULT_PRODUCTS;
+ }
+}
+
+function loadCart(){
+ try{
+  const d=JSON.parse(localStorage.getItem(CART_KEY));
+  return Array.isArray(d)?d:[];
+ }catch{
+  return [];
+ }
+}
+
 let products=loadProducts();
-function loadProducts(){try{const d=JSON.parse(localStorage.getItem(STORAGE_KEY));return Array.isArray(d)?d:DEFAULT_PRODUCTS}catch{return DEFAULT_PRODUCTS}}
-function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(products));renderAll()}
+let cart=loadCart();
+let selectedProduct=null;
+
 const $=id=>document.getElementById(id);
+
 $('year').textContent=new Date().getFullYear();
-function esc(s=''){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
-function money(v){return v!==''&&v!=null?Number(v).toLocaleString('ar-EG')+' ج.م':''}
-function card(p){const price=money(p.price);return `<article class="card bg-white rounded-2xl overflow-hidden border border-gray-100"><div class="relative bg-gray-100 aspect-square"><img src="${esc(p.image||'https://placehold.co/600x600?text=MY+STORY')}" alt="${esc(p.name)}" loading="lazy" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x600?text=MY+STORY'">${p.featured?'<span class="absolute top-3 right-3 badge bg-amber-400 text-black px-2 py-1 rounded-full font-bold">مميز</span>':''}${p.best?'<span class="absolute top-3 left-3 badge bg-gray-900 text-white px-2 py-1 rounded-full">رائج</span>':''}</div><div class="p-4"><p class="text-xs text-amber-700 font-bold mb-1">${esc(p.category||'متنوع')}</p><h3 class="font-bold line-clamp-2 min-h-[48px]">${esc(p.name)}</h3>${p.description?`<p class="text-gray-500 text-sm mt-2 line-clamp-2">${esc(p.description)}</p>`:''}<div class="mt-3 flex items-center justify-between gap-2">${price?`<span class="font-bold">${price}</span>`:'<span class="text-xs text-gray-400">السعر على موقع البائع</span>'}<a href="${esc(p.affiliateUrl||'#')}" ${p.affiliateUrl?'target="_blank" rel="nofollow sponsored noopener"':''} onclick="${p.affiliateUrl?'':'return noLink()'}" class="bg-gray-900 text-white px-3 py-2 rounded-lg text-sm font-bold hover:bg-amber-500 hover:text-black">شاهد المنتج <i class="fa fa-arrow-left mr-1"></i></a></div></div></article>`}
-function noLink(){toast('أضف رابط العمولة للمنتج من لوحة الإدارة أولًا.');return false}
-function renderGrid(id,list){$(id).innerHTML=list.length?list.map(card).join():'<p class="text-gray-500 col-span-full bg-white p-6 rounded-xl">لا توجد منتجات في هذا القسم حاليًا.</p>'}
-function renderAll(){const q=$('search').value.trim().toLowerCase(),cat=$('categoryFilter').value;const filtered=products.filter(p=>(!q||(p.name+' '+(p.category||'')+' '+(p.description||'')).toLowerCase().includes(q))&&(!cat||p.category===cat));renderGrid('productsGrid',filtered);renderGrid('featuredGrid',products.filter(p=>p.featured));renderGrid('bestGrid',products.filter(p=>p.best));$('countLabel').textContent=filtered.length+' منتج';$('featuredSection').style.display=products.some(p=>p.featured)?'':'none';$('bestSection').style.display=products.some(p=>p.best)?'':'none';let cats=[...new Set(products.map(p=>p.category).filter(Boolean))];const old=cat;$('categoryFilter').innerHTML='<option value="">كل التصنيفات</option>'+cats.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('');$('categoryFilter').value=cats.includes(old)?old:'';renderAdminList()}
-function renderAdminList(){$('adminCount').textContent=products.length;$('adminProducts').innerHTML=products.map(p=>`<div class="border rounded-xl p-3 flex gap-3 items-center"><img src="${esc(p.image||'https://placehold.co/80')}" class="w-14 h-14 rounded-lg object-cover" onerror="this.src='https://placehold.co/80'"><div class="flex-1 min-w-0"><b class="block truncate">${esc(p.name)}</b><small class="text-gray-500">${esc(p.category||'بدون تصنيف')} ${p.featured?' • مميز':''} ${p.best?' • رائج':''}</small></div><button onclick="editProduct('${esc(p.id)}')" class="text-blue-600 p-2" aria-label="تعديل"><i class="fa fa-pen"></i></button><button onclick="deleteProduct('${esc(p.id)}')" class="text-red-600 p-2" aria-label="حذف"><i class="fa fa-trash"></i></button></div>`).join('')||'<p class="text-gray-500">لا توجد منتجات بعد.</p>'}
-function toast(s){$('toast').textContent=s;$('toast').classList.remove('hidden');setTimeout(()=>$('toast').classList.add('hidden'),2800)}
-function resetForm(){$('productForm').reset();$('editId').value=''}
-window.editProduct=id=>{const p=products.find(x=>x.id===id);if(!p)return;$('editId').value=p.id;$('amazonUrl').value=p.amazonUrl||'';$('pName').value=p.name;$('pImage').value=p.image||'';$('pDesc').value=p.description||'';$('pPrice').value=p.price||'';$('pCategory').value=p.category||'';$('pFeatured').checked=!!p.featured;$('pBest').checked=!!p.best;$('pAffiliate').value=p.affiliateUrl||'';window.scrollTo({top:0,behavior:'smooth'})}
-window.deleteProduct=id=>{if(confirm('متأكد من حذف المنتج؟')){products=products.filter(p=>p.id!==id);save();toast('تم حذف المنتج')}}
-$('productForm').addEventListener('submit',e=>{e.preventDefault();const id=$('editId').value;const p={id:id||'p-'+Date.now(),name:$('pName').value.trim(),image:$('pImage').value.trim(),description:$('pDesc').value.trim(),price:$('pPrice').value,category:$('pCategory').value.trim()||'متنوع',amazonUrl:$('amazonUrl').value.trim(),affiliateUrl:$('pAffiliate').value.trim(),featured:$('pFeatured').checked,best:$('pBest').checked,createdAt:id?(products.find(x=>x.id===id)?.createdAt||Date.now()):Date.now()};if(id)products=products.map(x=>x.id===id?p:x);else products.unshift(p);save();resetForm();toast(id?'تم تحديث المنتج':'تمت إضافة المنتج')});
+
+function esc(s=''){
+ return String(s).replace(/[&<>"']/g,m=>({
+  '&':'&amp;',
+  '<':'&lt;',
+  '>':'&gt;',
+  '"':'&quot;',
+  "'":'&#39;'
+ }[m]));
+}
+
+function safeUrl(url){
+ try{
+  const u=new URL(url);
+  return ['https:','http:'].includes(u.protocol)?u.href:'';
+ }catch{
+  return '';
+ }
+}
+
+function money(v){
+ return v!==''&&v!=null&&!isNaN(Number(v))
+ ?Number(v).toLocaleString('ar-EG')+' ج.م'
+ :'';
+}
+
+function toast(s){
+ $('toast').textContent=s;
+ $('toast').classList.remove('hidden');
+ setTimeout(()=>$('toast').classList.add('hidden'),2800);
+}
+
+function save(){
+ localStorage.setItem(STORAGE_KEY,JSON.stringify(products));
+ renderAll();
+}
+
+function saveCart(){
+ localStorage.setItem(CART_KEY,JSON.stringify(cart));
+ renderCart();
+ updateCartCount();
+}
+
+function updateCartCount(){
+ const count=cart.reduce((sum,item)=>sum+Number(item.qty||0),0);
+ $('cartCount').textContent=count;
+}
+
+function addToCart(id){
+ const p=products.find(x=>String(x.id)===String(id));
+ if(!p)return;
+
+ const existing=cart.find(x=>String(x.id)===String(id));
+
+ if(existing){
+  existing.qty++;
+ }else{
+  cart.push({id:p.id,qty:1});
+ }
+
+ saveCart();
+ toast('تمت إضافة المنتج إلى السلة');
+}
+
+function changeQty(id,amount){
+ const item=cart.find(x=>String(x.id)===String(id));
+ if(!item)return;
+
+ item.qty+=amount;
+
+ if(item.qty<=0){
+  cart=cart.filter(x=>String(x.id)!==String(id));
+ }
+
+ saveCart();
+}
+
+function removeFromCart(id){
+ cart=cart.filter(x=>String(x.id)!==String(id));
+ saveCart();
+ toast('تم حذف المنتج من السلة');
+}
+
+function renderCart(){
+ const box=$('cartItems');
+
+ const items=cart.map(item=>{
+  const p=products.find(x=>String(x.id)===String(item.id));
+  return p?{...p,qty:item.qty}:null;
+ }).filter(Boolean);
+
+ if(!items.length){
+  box.innerHTML=`
+   <div class="text-center py-16">
+    <i class="fa-solid fa-cart-shopping text-5xl text-gray-300 mb-4"></i>
+    <h3 class="font-bold text-lg">السلة فارغة</h3>
+    <p class="text-gray-500 text-sm mt-2">ابدأ بإضافة المنتجات التي تعجبك.</p>
+   </div>`;
+  $('cartTotal').textContent='0';
+  return;
+ }
+
+ box.innerHTML=items.map(p=>{
+  const image=safeUrl(p.image)||'https://placehold.co/100x100?text=MY+STORY';
+  const link=safeUrl(p.affiliateUrl);
+
+  return `
+   <div class="border rounded-xl p-3 flex gap-3 items-center">
+
+    <img src="${esc(image)}" alt="${esc(p.name)}"
+    class="w-20 h-20 rounded-lg object-cover"
+    onerror="this.src='https://placehold.co/100x100'">
+
+    <div class="flex-1 min-w-0">
+     <h4 class="font-bold text-sm">${esc(p.name)}</h4>
+     <p class="text-xs text-gray-500 mt-1">${money(p.price)||'السعر على موقع البائع'}</p>
+
+     <div class="flex items-center gap-3 mt-3">
+      <button data-action="minus" data-id="${esc(p.id)}" class="border rounded-lg w-8 h-8">−</button>
+      <span class="font-bold">${p.qty}</span>
+      <button data-action="plus" data-id="${esc(p.id)}" class="border rounded-lg w-8 h-8">+</button>
+      <button data-action="remove" data-id="${esc(p.id)}" class="text-red-600 mr-auto">
+       <i class="fa-solid fa-trash"></i>
+      </button>
+     </div>
+
+     ${link?`<a href="${esc(link)}" target="_blank" rel="nofollow sponsored noopener" class="inline-block mt-3 text-xs bg-gray-900 text-white rounded-lg px-3 py-2">اشتري من أمازون</a>`:'<p class="text-xs text-red-500 mt-2">رابط الشراء غير متوفر</p>'}
+    </div>
+   </div>`;
+ }).join('');
+
+ const total=items.reduce((sum,p)=>sum+(Number(p.price)||0)*p.qty,0);
+ $('cartTotal').textContent=total?money(total):'يُحدد حسب أسعار البائعين';
+}
+
+function card(p){
+ const image=safeUrl(p.image)||'https://placehold.co/600x600?text=MY+STORY';
+ const link=safeUrl(p.affiliateUrl);
+ const price=money(p.price);
+
+ return `
+ <article class="card bg-white rounded-2xl overflow-hidden border border-gray-100">
+
+  <div class="relative bg-gray-100 aspect-square"
+  data-action="details" data-id="${esc(p.id)}">
+
+   <img src="${esc(image)}" alt="${esc(p.name)}"
+   loading="lazy" class="product-image w-full h-full object-cover"
+   onerror="this.src='https://placehold.co/600x600?text=MY+STORY'">
+
+   ${p.featured?'<span class="absolute top-3 right-3 badge bg-amber-400 text-black px-2 py-1 rounded-full font-bold">مميز</span>':''}
+
+   ${p.best?'<span class="absolute top-3 left-3 badge bg-gray-900 text-white px-2 py-1 rounded-full">رائج</span>':''}
+  </div>
+
+  <div class="p-4">
+
+   <p class="text-xs text-amber-700 font-bold mb-1">
+    ${esc(p.category||'متنوع')}
+   </p>
+
+   <h3 class="font-bold line-clamp-2 min-h-[48px] cursor-pointer hover:text-amber-600"
+   data-action="details" data-id="${esc(p.id)}">
+    ${esc(p.name)}
+   </h3>
+
+   ${p.description?`<p class="text-gray-500 text-sm mt-2 line-clamp-2">${esc(p.description)}</p>`:''}
+
+   <div class="mt-3 flex items-center justify-between gap-2">
+    ${price?`<span class="font-bold">${price}</span>`:'<span class="text-xs text-gray-400">السعر على موقع البائع</span>'}
+
+    <button data-action="details" data-id="${esc(p.id)}"
+    class="border border-gray-300 px-3 py-2 rounded-lg text-sm font-bold hover:border-amber-500">
+     التفاصيل
+    </button>
+   </div>
+
+   <button data-action="add" data-id="${esc(p.id)}"
+   class="w-full mt-3 gold-bg text-black px-3 py-3 rounded-xl font-bold hover:bg-amber-400">
+    <i class="fa-solid fa-cart-plus ml-2"></i>
+    أضف للسلة
+   </button>
+
+   ${link?`
+   <a href="${esc(link)}" target="_blank" rel="nofollow sponsored noopener"
+   class="block text-center mt-2 bg-gray-900 text-white px-3 py-3 rounded-xl text-sm font-bold hover:bg-gray-700">
+    شاهد المنتج على أمازون
+    <i class="fa-solid fa-arrow-left mr-1"></i>
+   </a>`:`
+   <button data-action="no-link" class="w-full mt-2 border rounded-xl py-2 text-xs text-gray-400">
+    رابط الشراء غير متوفر حاليًا
+   </button>`}
+
+  </div>
+ </article>`;
+}
+
+function renderGrid(id,list){
+ $(id).innerHTML=list.length
+ ?list.map(card).join('')
+ :'<p class="text-gray-500 col-span-full bg-white p-6 rounded-xl">لا توجد منتجات في هذا القسم حاليًا.</p>';
+}
+
+function renderAll(){
+ const q=$('search').value.trim().toLowerCase();
+ const cat=$('categoryFilter').value;
+
+ const filtered=products.filter(p=>
+  (!q||(p.name+' '+(p.category||'')+' '+(p.description||'')).toLowerCase().includes(q))
+  &&(!cat||p.category===cat)
+ );
+
+ renderGrid('productsGrid',filtered);
+ renderGrid('featuredGrid',products.filter(p=>p.featured));
+ renderGrid('bestGrid',products.filter(p=>p.best));
+
+ $('countLabel').textContent=filtered.length+' منتج';
+
+ $('featuredSection').style.display=products.some(p=>p.featured)?'':'none';
+ $('bestSection').style.display=products.some(p=>p.best)?'':'none';
+
+ const cats=[...new Set(products.map(p=>p.category).filter(Boolean))];
+ const old=cat;
+
+ $('categoryFilter').innerHTML='<option value="">كل التصنيفات</option>'+
+ cats.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('');
+
+ $('categoryFilter').value=cats.includes(old)?old:'';
+
+ renderAdminList();
+}
+
+function renderAdminList(){
+ $('adminCount').textContent=products.length;
+
+ $('adminProducts').innerHTML=products.map(p=>`
+  <div class="border rounded-xl p-3 flex gap-3 items-center">
+
+   <img src="${esc(safeUrl(p.image)||'https://placehold.co/80')}"
+   class="w-14 h-14 rounded-lg object-cover"
+   onerror="this.src='https://placehold.co/80'">
+
+   <div class="flex-1 min-w-0">
+    <b class="block truncate">${esc(p.name)}</b>
+    <small class="text-gray-500">
+     ${esc(p.category||'بدون تصنيف')}
+     ${p.featured?' • مميز':''}
+     ${p.best?' • رائج':''}
+    </small>
+   </div>
+
+   <button data-action="edit" data-id="${esc(p.id)}" class="text-blue-600 p-2" aria-label="تعديل">
+    <i class="fa fa-pen"></i>
+   </button>
+
+   <button data-action="delete" data-id="${esc(p.id)}" class="text-red-600 p-2" aria-label="حذف">
+    <i class="fa fa-trash"></i>
+   </button>
+
+  </div>
+ `).join('')||'<p class="text-gray-500">لا توجد منتجات بعد.</p>';
+}
+
+function openDetails(id){
+ const p=products.find(x=>String(x.id)===String(id));
+ if(!p)return;
+
+ selectedProduct=p;
+
+ $('detailsImage').src=safeUrl(p.image)||'https://placehold.co/600x600?text=MY+STORY';
+ $('detailsImage').alt=p.name;
+ $('detailsName').textContent=p.name;
+ $('detailsCategory').textContent=p.category||'متنوع';
+ $('detailsDescription').textContent=p.description||'لا يوجد وصف لهذا المنتج حاليًا.';
+ $('detailsPrice').textContent=money(p.price)||'السعر على موقع البائع';
+
+ const link=safeUrl(p.affiliateUrl);
+
+ $('detailsBuy').href=link||'#';
+ $('detailsBuy').style.display=link?'block':'none';
+
+ $('detailsModal').classList.add('open');
+}
+
+function closeDetails(){
+ $('detailsModal').classList.remove('open');
+ selectedProduct=null;
+}
+
+function resetForm(){
+ $('productForm').reset();
+ $('editId').value='';
+}
+
+window.editProduct=id=>{
+ const p=products.find(x=>String(x.id)===String(id));
+ if(!p)return;
+
+ $('editId').value=p.id;
+ $('amazonUrl').value=p.amazonUrl||'';
+ $('pName').value=p.name;
+ $('pImage').value=p.image||'';
+ $('pDesc').value=p.description||'';
+ $('pPrice').value=p.price||'';
+ $('pCategory').value=p.category||'';
+ $('pFeatured').checked=!!p.featured;
+ $('pBest').checked=!!p.best;
+ $('pAffiliate').value=p.affiliateUrl||'';
+
+ window.scrollTo({top:0,behavior:'smooth'});
+};
+
+window.deleteProduct=id=>{
+ if(confirm('متأكد من حذف المنتج؟')){
+  products=products.filter(p=>String(p.id)!==String(id));
+  cart=cart.filter(x=>String(x.id)!==String(id));
+  save();
+  saveCart();
+  toast('تم حذف المنتج');
+ }
+};
+
+// EVENTS
+document.addEventListener('click',e=>{
+ const btn=e.target.closest('[data-action]');
+ if(!btn)return;
+
+ const action=btn.dataset.action;
+ const id=btn.dataset.id;
+
+ if(action==='add')addToCart(id);
+ if(action==='details')openDetails(id);
+ if(action==='no-link')toast('أضف رابط العمولة من لوحة الإدارة أولًا.');
+ if(action==='plus')changeQty(id,1);
+ if(action==='minus')changeQty(id,-1);
+ if(action==='remove')removeFromCart(id);
+ if(action==='edit')window.editProduct(id);
+ if(action==='delete')window.deleteProduct(id);
+});
+
+// ADD / EDIT PRODUCT
+$('productForm').addEventListener('submit',e=>{
+ e.preventDefault();
+
+ const id=$('editId').value;
+ const affiliate=safeUrl($('pAffiliate').value.trim());
+
+ if(!affiliate){
+  toast('أدخل رابط عمولة صحيحًا للمنتج');
+  return;
+ }
+
+ const p={
+  id:id||'p-'+Date.now(),
+  name:$('pName').value.trim(),
+  image:safeUrl($('pImage').value.trim()),
+  description:$('pDesc').value.trim(),
+  price:$('pPrice').value,
+  category:$('pCategory').value.trim()||'متنوع',
+  amazonUrl:safeUrl($('amazonUrl').value.trim()),
+  affiliateUrl:affiliate,
+  featured:$('pFeatured').checked,
+  best:$('pBest').checked,
+  createdAt:id?(products.find(x=>String(x.id)===String(id))?.createdAt||Date.now()):Date.now()
+ };
+
+ if(id){
+  products=products.map(x=>String(x.id)===String(id)?p:x);
+ }else{
+  products.unshift(p);
+ }
+
+ save();
+ resetForm();
+ toast(id?'تم تحديث المنتج':'تمت إضافة المنتج');
+});
+
 $('resetForm').onclick=resetForm;
-$('search').addEventListener('input',renderAll);$('categoryFilter').addEventListener('change',renderAll);
+
+$('search').addEventListener('input',renderAll);
+$('categoryFilter').addEventListener('change',renderAll);
+
 $('menuBtn').onclick=()=>$('mobileNav').classList.toggle('hidden');
-$('mobileNav').querySelectorAll('a').forEach(a=>a.onclick=()=>$('mobileNav').classList.add('hidden'));
-$('adminOpen').onclick=()=>$('loginModal').classList.add('open');document.querySelectorAll('.closeLogin').forEach(b=>b.onclick=()=>$('loginModal').classList.remove('open'));
-$('loginBtn').onclick=()=>{if($('adminPin').value==='1234'){$('loginModal').classList.remove('open');$('adminModal').classList.add('open');$('loginError').textContent='';$('adminPin').value=''}else $('loginError').textContent='رمز الدخول غير صحيح'};
-$('adminClose').onclick=()=>$('adminModal').classList.remove('open');$('logoutBtn').onclick=()=>$('adminModal').classList.remove('open');
-$('exportBtn').onclick=()=>{const blob=new Blob([JSON.stringify(products,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='mystory-products-backup.json';a.click();URL.revokeObjectURL(a.href)};
-$('importFile').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const d=JSON.parse(await f.text());if(Array.isArray(d)){products=d;save();toast('تم استيراد المنتجات')}else toast('ملف غير صحيح')}catch{toast('تعذر قراءة الملف')}e.target.value=''};
+
+$('mobileNav').querySelectorAll('a').forEach(a=>{
+ a.onclick=()=>$('mobileNav').classList.add('hidden');
+});
+
+// CART OPEN / CLOSE
+$('cartOpen').onclick=()=>{
+ renderCart();
+ $('cartModal').classList.add('open');
+};
+
+$('cartClose').onclick=()=>$('cartModal').classList.remove('open');
+
+$('clearCart').onclick=()=>{
+ if(confirm('هل تريد إفراغ السلة بالكامل؟')){
+  cart=[];
+  saveCart();
+  toast('تم إفراغ السلة');
+ }
+};
+
+$('cartModal').addEventListener('click',e=>{
+ if(e.target===$('cartModal')){
+  $('cartModal').classList.remove('open');
+ }
+});
+
+// DETAILS
+$('detailsClose').onclick=closeDetails;
+
+$('detailsModal').addEventListener('click',e=>{
+ if(e.target===$('detailsModal'))closeDetails();
+});
+
+$('detailsAdd').onclick=()=>{
+ if(selectedProduct){
+  addToCart(selectedProduct.id);
+  closeDetails();
+ }
+};
+
+// ADMIN
+$('adminOpen').onclick=()=>$('loginModal').classList.add('open');
+
+document.querySelectorAll('.closeLogin').forEach(b=>{
+ b.onclick=()=>$('loginModal').classList.remove('open');
+});
+
+$('loginBtn').onclick=()=>{
+ if($('adminPin').value==='1234'){
+  $('loginModal').classList.remove('open');
+  $('adminModal').classList.add('open');
+  $('loginError').textContent='';
+  $('adminPin').value='';
+ }else{
+  $('loginError').textContent='رمز الدخول غير صحيح';
+ }
+};
+
+$('adminClose').onclick=()=>$('adminModal').classList.remove('open');
+$('logoutBtn').onclick=()=>$('adminModal').classList.remove('open');
+
+// EXPORT
+$('exportBtn').onclick=()=>{
+ const blob=new Blob([JSON.stringify(products,null,2)],{type:'application/json'});
+ const a=document.createElement('a');
+ a.href=URL.createObjectURL(blob);
+ a.download='mystory-products-backup.json';
+ a.click();
+ URL.revokeObjectURL(a.href);
+};
+
+// IMPORT
+$('importFile').onchange=async e=>{
+ const f=e.target.files[0];
+ if(!f)return;
+
+ try{
+  const d=JSON.parse(await f.text());
+
+  if(Array.isArray(d)){
+   products=d;
+   save();
+   toast('تم استيراد المنتجات');
+  }else{
+   toast('ملف غير صحيح');
+  }
+ }catch{
+  toast('تعذر قراءة الملف');
+ }
+
+ e.target.value='';
+};
+
+// INITIALIZE
 renderAll();
+renderCart();
+updateCartCount();
+
 </script>
-</body></html>
+</body>
+</html>
