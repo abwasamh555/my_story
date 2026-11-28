@@ -70,7 +70,7 @@ export default function EcommerceApp() {
             {/* Logo */}
             <div className="flex items-center gap-3">
               <img 
-                 src="https://raw.githubusercontent.com/abwasamh555/my_story/main/file_00000000bbe08210aad06188ad3cc765.png.png"
+                 https://raw.githubusercontent.com/abwasamh555/my_story/main/file_00000000bbe08210aad06188ad3cc765.png
                 alt="Logo" 
                 className="h-12 w-auto object-contain"
               />
